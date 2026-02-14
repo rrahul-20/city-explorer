@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { ArrowLeftIcon } from '../components/common/Icons';
+import { API_BASE_URL } from '../config/api';
 
 type PlaceCategory = 'beach' | 'restaurant' | 'heritage' | 'shopping';
 
@@ -111,7 +112,7 @@ export default function AdminPage() {
 
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:4000/api/admin/places', {
+            const response = await fetch(`${API_BASE_URL}/api/admin/places`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

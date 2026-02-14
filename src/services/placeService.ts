@@ -1,6 +1,7 @@
 import type { Place } from '../types/place';
+import { API_BASE_URL } from '../config/api';
 
-const API_BASE_URL = 'http://localhost:4000/api';
+const BASE_API_URL = `${API_BASE_URL}/api`;
 
 /**
  * Fetches all places from the backend API.
@@ -8,7 +9,7 @@ const API_BASE_URL = 'http://localhost:4000/api';
  * @returns Promise with an array of Place objects.
  */
 export async function fetchPlaces(signal?: AbortSignal): Promise<Place[]> {
-    const response = await fetch(`${API_BASE_URL}/places`, { signal });
+    const response = await fetch(`${BASE_API_URL}/places`, { signal });
     if (!response.ok) {
         throw new Error(`Failed to fetch places: ${response.statusText}`);
     }
@@ -22,7 +23,7 @@ export async function fetchPlaces(signal?: AbortSignal): Promise<Place[]> {
  * @returns Promise with a Place object.
  */
 export async function fetchPlaceById(id: string, signal?: AbortSignal): Promise<Place> {
-    const response = await fetch(`${API_BASE_URL}/places/${id}`, { signal });
+    const response = await fetch(`${BASE_API_URL}/places/${id}`, { signal });
     if (!response.ok) {
         throw new Error(`Failed to fetch place with ID ${id}: ${response.statusText}`);
     }
@@ -35,7 +36,7 @@ export async function fetchPlaceById(id: string, signal?: AbortSignal): Promise<
  * @returns Promise with the updated Place object.
  */
 export async function savePlace(id: string): Promise<Place> {
-    const response = await fetch(`${API_BASE_URL}/places/${id}/save`, {
+    const response = await fetch(`${BASE_API_URL}/places/${id}/save`, {
         method: 'PATCH',
     });
     if (!response.ok) {
@@ -50,7 +51,7 @@ export async function savePlace(id: string): Promise<Place> {
  * @returns Promise with the updated Place object.
  */
 export async function unsavePlace(id: string): Promise<Place> {
-    const response = await fetch(`${API_BASE_URL}/places/${id}/unsave`, {
+    const response = await fetch(`${BASE_API_URL}/places/${id}/unsave`, {
         method: 'PATCH',
     });
     if (!response.ok) {
@@ -65,7 +66,7 @@ export async function unsavePlace(id: string): Promise<Place> {
  * @returns Promise with an array of saved Place objects.
  */
 export async function fetchSavedPlaces(signal?: AbortSignal): Promise<Place[]> {
-    const response = await fetch(`${API_BASE_URL}/places/saved`, { signal });
+    const response = await fetch(`${BASE_API_URL}/places/saved`, { signal });
     if (!response.ok) {
         throw new Error(`Failed to fetch saved places: ${response.statusText}`);
     }
