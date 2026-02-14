@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Place {
+  id          String   @id @default(uuid())
+  name        String
+  category    String
+  city        String
+  rating      Float
+  reviewCount Int
+  distance    Float
+  image       String
+  description String
+  isSaved     Boolean  @default(false)
+  lat         Float
+  lng         Float
+  mapUrl      String?
+  createdAt   DateTime @default(now())
+}
