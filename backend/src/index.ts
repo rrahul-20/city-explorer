@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 4000;
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://your-vercel-app.vercel.app"
+        "https://city-explorer-sooty.vercel.app/"
     ]
 }));
 
